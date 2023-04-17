@@ -1,20 +1,25 @@
+package com.company;
+
 import java.util.Scanner;
 
 public class Travelling {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        String destination = scanner.nextLine();
+        int requiredBudget = Integer.parseInt(scanner.nextLine());
+        int totalAmount = 0;
         while (true){
-            String destination = scanner.nextLine();
-            if(destination.equals("End"))
-                break;
-            double budget = Double.parseDouble(scanner.nextLine());
-            double collectedSum = 0;
-            while (collectedSum < budget){
-                double savedAmount = Double.parseDouble(scanner.nextLine());
-                collectedSum += savedAmount;
-                System.out.printf("Collected: %.2f\n",collectedSum);
+            int money = Integer.parseInt(scanner.nextLine());
+            totalAmount += money;
+            if (totalAmount >= requiredBudget){
+                System.out.printf("Going to %s!\n",destination);
+                totalAmount = 0;
+                destination = scanner.nextLine();
+                if (destination.equals("End"))
+                    break;
+                requiredBudget = Integer.parseInt(scanner.nextLine());
             }
-            System.out.println("Going to " + destination + "!");
         }
     }
 }
